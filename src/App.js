@@ -5,17 +5,25 @@ import {
   Route,
   Link
 } from "react-router-dom";
+import SignUp from './Components/SignUp';
+import './index.css'
+import { Form } from 'react-bootstrap';
+import LoginPage from './Components/LoginPage';
+
+export default function App() {
 
 
-
-function App() {
   return (
   <Router>
-    
+   <SignUp />
+  
+
+   {/* <LoginPage /> */}
+
   </Router>
   );
 }
 
 
 
-export default App;
+

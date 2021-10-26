@@ -5,3 +5,7 @@
     - User Authentication: Email Address and Password as input fields with login button and forgot password link sign in using facebook, twitter, or google. 
     - Sign out page: Tells the user that they have been signed out. 
     - Dashboard: displays user info. Allows the user to change their info, logout button, delete account button. 
+
+### Sign Up Page
+- set all expected inputs (first name, last name, email, and password) as state using a hook.
+    * const [input, setInput] = useState("")
