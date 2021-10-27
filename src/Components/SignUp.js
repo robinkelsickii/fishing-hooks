@@ -6,17 +6,18 @@ import { useState, useEffect } from "react";
 
 
 
+export default function SignUp() {
+    const [data, setData] = useState({});
 
-const SignUp = () => {
-    const [inputs, setInputs] = useState({});
-
-    const handleChange = (e) => setInputs(prevState => ({ ...prevState, [e.target.name]: [e.target.value] }));
+    const handleChange = e => setData(prevState => ({ ...prevState, [e.target.id]: e.target.value }));
 
     const handleSubmit = (e) => {
         e.preventDefault()
         console.log('User Created')
-        console.log(inputs)
+        console.log(data)
     }
+
+    
 
     return (
         <Container className='text-center'>
@@ -28,42 +29,42 @@ const SignUp = () => {
             <Row>
                 <Form onSubmit = {handleSubmit}>
                     <Col className='pt-5 text-center'>
-                        <Form.Group controlId='firstName' onChange = {handleChange}>
+                        <Form.Group id='firstName' onChange = {handleChange} value={data.firstName || ""}>
                             <Form.Label>First Name</Form.Label>
                             <Form.Control type="text" placeholder="Enter First Name" />
                         </Form.Group>
 
-                        <Form.Group controlId='lastName' onChange = {handleChange}>
+                        <Form.Group id='lastName' onChange = {handleChange} value={data.lastName || ""}>
                             <Form.Label>Last Name</Form.Label>
                             <Form.Control type="text" placeholder="Enter Last Name" />
                         </Form.Group>
 
-                        <Form.Group controlId='email' onChange = {handleChange}>
+                        <Form.Group id='email' onChange = {handleChange} value={data.email || ""}>
                             <Form.Label>E-Mail</Form.Label>
                             <Form.Control type="text" placeholder="example@website.com" />
                         </Form.Group>
 
-                        <Form.Group controlId='password' onChange = {handleChange}>
+                        <Form.Group id='password' onChange = {handleChange} value={data.password || ""}>
                             <Form.Label>Password</Form.Label>
                             <Form.Control type="text" placeholder="Create a password" />
                         </Form.Group>
 
-                        <Form.Group controlId='address' onChange = {handleChange}>
+                        <Form.Group id='address' onChange = {handleChange} value={data.address || ""}>
                             <Form.Label>Address</Form.Label>
                             <Form.Control type="text" placeholder="Enter your street Address" />
                         </Form.Group>
 
-                        <Form.Group controlId='address2' onChange = {handleChange}>
+                        <Form.Group id='address2' onChange = {handleChange} value={data.address2 || ""}>
                             <Form.Label>Address 2</Form.Label>
                             <Form.Control type="text" placeholder="Enter Apt #" />
                         </Form.Group>
 
-                        <Form.Group controlId='city' onChange = {handleChange}>
+                        <Form.Group id='city' onChange = {handleChange} value={data.city || ""}>
                             <Form.Label>City</Form.Label>
                             <Form.Control type="text" placeholder="Enter your City" />
                         </Form.Group>
 
-                        <Form.Group as={Col} controlId="formState" onChange = {handleChange}>
+                        <Form.Group as={Col} id="formState" onChange = {handleChange} value={data.State || ""}>
                             <Form.Label>State</Form.Label>
                             <Form.Control as="select" name="state">
                                 <option value="AL">Alabama</option>
@@ -120,7 +121,7 @@ const SignUp = () => {
                             </Form.Control>
                         </Form.Group>
  
-                        <Form.Group controlId='zip' onChange = {handleChange}>
+                        <Form.Group id='zip' onChange = {handleChange} value={data.zip || ""}>
                             <Form.Label>Zipcode</Form.Label>
                             <Form.Control type="text" placeholder="Enter Zipcode" />
                         </Form.Group>
@@ -134,4 +135,3 @@ const SignUp = () => {
 )
 // console.log(SignUp)
 }
-export default SignUp;
