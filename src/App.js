@@ -15,10 +15,10 @@ export default function App() {
 
   return (
   <Router>
-   <SignUp />
+   {/* <SignUp /> */}
   
 
-   {/* <LoginPage /> */}
+   <LoginPage />
 
   </Router>
   );
