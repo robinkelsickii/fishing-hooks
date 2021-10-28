@@ -19,17 +19,6 @@ export default function LoginPage() {
         console.log('user logged in')
         console.log(login)
         // ran axios call sending all the user data
-       axios.all([
-           axios.post('https://port-3000-aincbootcampapi-ianrios529550.codeanyapp.com/api/auth/login'),
-           axios.get('https://port-3000-aincbootcampapi-ianrios529550.codeanyapp.com/api/auth/user', {
-               name: login.loginEmail,
-               pass: login.loginPassword
-
-           })
-       ])
-       .then(axios.spread((results1, results2) => {
-           console.log(results1, results2)
-       }))
         // save data to localstorage
     }
 
