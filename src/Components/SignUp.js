@@ -2,10 +2,12 @@ import React from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { useHistory } from "react-router";
 
 
-export default function SignUp() {
+export default function SignUp(props) {
     const [data, setData] = useState({});
+    const history = useHistory()
 
 
 
@@ -31,14 +33,16 @@ export default function SignUp() {
             // save data to localstorage
             const token = response.data.data.token
             localStorage.setItem('token', token)
+            console.log(token)
         })
         .catch(function (error) {
             console.log(error);
         });
     }
-
-
-
+    const loginBtn = () => {
+        history.push('/Login')
+    }
+    
     return (
         <Container className='text-center'>
             <Row>
@@ -50,7 +54,7 @@ export default function SignUp() {
                 <Form onSubmit={handleSubmit}>
                     <Col className='pt-5 text-center'>
                         <Form.Group onChange={handleChange} value={data.firstName || ""}>
-                            <Form.Label>First Name</Form.Label>
+                            <Form.Label >First Name</Form.Label>
                             <Form.Control id='firstName' type="text" placeholder="Enter First Name" />
                         </Form.Group>
 
@@ -68,14 +72,15 @@ export default function SignUp() {
                             <Form.Label>Password</Form.Label>
                             <Form.Control id='password' type="text" placeholder="Create a password" />
                         </Form.Group>
-
-                        <Button type='submit' className='btn btn-primary mt-3'>Sign Up</Button>
+                        <Button type='submit' className='btn btn-primary mt-3 mb-3'>Sign Up</Button>
+                        <div>
+                        <p> Already Have an account? Sign In!</p>
+                        <Button type='button' className='btn btn-success' onClick={loginBtn}>Login</Button>
+                        </div>
                     </Col>
                 </Form>
             </Row>
         </Container>
-
-
     )
     // console.log(SignUp)
 }
