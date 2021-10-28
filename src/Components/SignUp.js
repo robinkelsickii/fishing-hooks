@@ -3,12 +3,10 @@ import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-const getLogin = ''
-const logOut = 'https://port-3000-aincbootcampapi-ianrios529550.codeanyapp.com/api/auth/logout'
 
 export default function SignUp() {
     const [data, setData] = useState({});
-   
+
 
 
 
@@ -17,28 +15,26 @@ export default function SignUp() {
 
         return { ...prevState, [e.target.id]: e.target.value }
     });
-    // useEffect(() => {
-
-    // }, [])
 
     const handleSubmit = (e) => {
         e.preventDefault()
         console.log('User Created')
         console.log(data)
-        // ran axios call sending all the user data
+        // run axios call sending all the user data
         axios.post('https://port-3000-aincbootcampapi-ianrios529550.codeanyapp.com/api/auth/register', {
-            firstName: data.firstName,
-            lastName: data.lastName,
+            name: data.firstName + " " + data.lastName,
             email: data.email,
-            password: data.password
+            password: data.password,
         })
-        .then(function(response){
-            console.log(response)
+        .then(function (response) {            
+            console.log(response);
+            // save data to localstorage
+            const token = response.data.data.token
+            localStorage.setItem('token', token)
         })
         .catch(function (error) {
             console.log(error);
-        })
-        // save data to localstorage
+        });
     }
 
 
@@ -47,7 +43,7 @@ export default function SignUp() {
         <Container className='text-center'>
             <Row>
                 <Col>
-                    <h1>Sign Up</h1>        
+                    <h1>Sign Up</h1>
                 </Col>
             </Row>
             <Row>

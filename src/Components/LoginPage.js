@@ -18,8 +18,20 @@ export default function LoginPage() {
         e.preventDefault()
         console.log('user logged in')
         console.log(login)
-        // ran axios call sending all the user data
-        // save data to localstorage
+
+
+        // run axios call sending all the user data to log in 
+        axios.post('https://port-3000-aincbootcampapi-ianrios529550.codeanyapp.com/api/auth/login', {
+            email: login.email,
+            password: login.password
+          })
+          .then(function (response) {
+            console.log(response);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+
     }
 
 
@@ -33,12 +45,12 @@ export default function LoginPage() {
                     <Form onSubmit = {handleSubmit}>
                         <Form.Group onChange={handleChange} value={login.loginEmail || ""}>
                             <Form.Label>E-Mail</Form.Label>
-                            <Form.Control id='loginEmail' type="text" placeholder="example@website.com" />
+                            <Form.Control id='email' type="text" placeholder="example@website.com" />
                         </Form.Group>
 
                         <Form.Group onChange={handleChange} value={login.loginPassword || ""}>
                             <Form.Label>Password</Form.Label>
-                            <Form.Control id='loginPassword' type="text" placeholder="Create a password" />
+                            <Form.Control id='password' type="text" placeholder="Create a password" />
                         </Form.Group>
                         <Col className='d-flex justify-content-center'>
 
