@@ -2,15 +2,14 @@ import React from "react";
 import axios from "axios";
 import { useState } from "react";
 import { Col, Container, Row, Form, Button } from "react-bootstrap";
-import { BrowserRouter as Router, Route } from "react-router-dom";
-import SignUp from "./SignUp";
-import Dashboard from "./Dashboard";
 import { useHistory } from "react-router";
 
 
 export default function LoginPage(props) {
 
     const [login, setLogin] = useState({});
+    const [validated, setValidated]= useState(false)
+    const noText = 'This field cannot be left empty'
     let history = useHistory()
 
     const handleChange = e => setLogin(prevState => {
@@ -26,7 +25,7 @@ export default function LoginPage(props) {
 
 
         // run axios call sending all the user data to log in 
-        axios.post('https://port-3000-aincbootcampapi-ianrios529550.codeanyapp.com/api/auth/login', {
+        axios.post('https://aincbootcampapi-ianrios529550.codeanyapp.com/api/auth/login', {
             email: login.email,
             password: login.password
         })
@@ -42,6 +41,12 @@ export default function LoginPage(props) {
             .catch(function (error) {
                 console.log(error);
             });
+            const form = e.currentTarget;
+        if (form.checkValidity() === false) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+        setValidated(true);
 
     }
 
@@ -56,15 +61,19 @@ export default function LoginPage(props) {
             <Row>
                 <Col className='text-center'>
                     <h1>Login</h1>
-                    <Form onSubmit={handleSubmit}>
+                    <Form validated={validated} onSubmit={handleSubmit}>
                         <Form.Group onChange={handleChange} value={login.loginEmail || ""}>
                             <Form.Label>E-Mail</Form.Label>
-                            <Form.Control id='email' type="text" placeholder="example@website.com" />
+                            <Form.Control required id='email' type="text" placeholder="example@website.com" />
+                            <Form.Control.Feedback>Thanks!</Form.Control.Feedback>
+                            <Form.Control.Feedback type='invalid'>{noText}</Form.Control.Feedback>
                         </Form.Group>
 
                         <Form.Group onChange={handleChange} value={login.loginPassword || ""}>
                             <Form.Label>Password</Form.Label>
-                            <Form.Control id='password' type="text" placeholder="Create a password" />
+                            <Form.Control required id='password' type="text" placeholder="Create a password" />
+                            <Form.Control.Feedback>Thanks!</Form.Control.Feedback>
+                            <Form.Control.Feedback type='invalid'>{noText}</Form.Control.Feedback>
                         </Form.Group>
                         <Col className='d-flex justify-content-center'>
                             <Button type='button' className='btn btn-primary mt-3 me-3' onClick={signUpBtn}>Sign Up</Button>

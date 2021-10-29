@@ -1,6 +1,6 @@
 import React from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import axios from "axios";
 import { useHistory } from "react-router";
 
@@ -25,7 +25,7 @@ export default function SignUp(props) {
         console.log('User Created')
         console.log(data)
         // run axios call sending all the user data
-        axios.post('https://port-3000-aincbootcampapi-ianrios529550.preview.codeanywhere.com//api/auth/register', {
+        axios.post('https://aincbootcampapi-ianrios529550.codeanyapp.com/api/auth/register', {
             name: data.firstName + " " + data.lastName,
             email: data.email,
             password: data.password,

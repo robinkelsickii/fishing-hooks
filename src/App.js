@@ -1,14 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import SignUp from './Components/SignUp';
-import './index.css'
 import LoginPage from './Components/LoginPage';
 import Dashboard from './Components/Dashboard';
+import './index.css'
 
 export default function App() {
   const [token, setToken] = useState('')
@@ -31,11 +26,6 @@ export default function App() {
         <Route exact path='/Dashboard'><Dashboard token={token} setToken={setToken} /></Route>
         <Route exact path='/Login'><LoginPage token={token} setToken={setToken} /></Route>
       </Switch>
-
-      
-
-      
-
     </Router>
   );
 }
